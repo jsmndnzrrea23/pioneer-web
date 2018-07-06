@@ -1,0 +1,149 @@
+<%- include header %>
+
+    <div class="container">
+
+        <form role="form" method="post" action="/quotation" encType="multipart/form-data">
+            <!-- <h3 class="animated fadeIn mb-4 text-center">Submit Photos</h3> -->
+
+<!--             <% if (message.length > 0) { %>
+                <div class="alert alert-success col-sm-12"><%= message %></div>
+            <% } %> -->
+            <% if (status.length > 0) { %>                                                                                
+                <input type="hidden" id="status" name="status" value="<%= status %>">
+            <% } %>
+                <input type="hidden" id="mid" name="mid" value="">
+                <input type="hidden" id="fname" name="fname" value="">
+                
+             <div class="md-form animated fadeIn">
+                <select name="vType" id="vType" class="form-control">
+                    <option disabled selected>Vehicle Type</option>
+                    <option>Hatchback</option>
+                    <option>Sedan</option>
+                    <option>MPV</option>
+                    <option>SUV</option>
+                    <option>Crossover</option>
+                    <option>Coupe</option>
+                    <option>Convertible</option>
+                </select>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="md-form animated fadeIn">
+                        <input type="number" id="fileNo" name="fileNo" value="" class="form-control" required>
+                        <label for="fileNo">File no</label>
+                    </div>          
+                 </div>
+                <div class="col">
+                    <div class="md-form animated fadeIn">
+                        <input type="text" id="plateNo" name="plateNo" value="" class="form-control" required>
+                        <label for="plateNo">Plate no</label>
+                    </div>          
+                 </div>                     
+            </div> 
+            <div class="row">
+                <div class="col">
+                    <div class="md-form animated fadeIn">
+                        <input type="number" id="engineNo" name="engineNo" value="" class="form-control" required>
+                        <label for="engineNo">Engine no</label>
+                    </div>          
+                 </div>
+                <div class="col">
+                    <div class="md-form animated fadeIn">
+                        <input type="text" id="chassisNo" name="chassisNo" value="" class="form-control" required>
+                        <label for="chassisNo">Chassis no</label>
+                    </div>          
+                 </div>                     
+            </div>                               
+            <div class="row">
+                <div class="col">
+                    <div class="md-form animated fadeIn">
+                        <select name="vMake" id="make" class="form-control" required>
+                            <option disabled selected>Make</option>
+                            <option>Honda</option>
+                            <option>Nissan</option>
+                        </select>
+                    </div>          
+                 </div>
+                <div class="col">
+                    <div class="md-form animated fadeIn">
+                        <select name="vSeries" id="series" class="form-control" required>
+                            <option disabled selected>Series</option>
+                            <option>2015 Honda Pilot</option>
+                            <option>2009 Honda CRV</option>
+                            <option>2013 Honda Accord</option>
+                            <option>2011 Honda Accord</option>
+                            <option>2017 Nissan Altima</option>
+                            <option>2014 Nissan Frontier</option>
+                            <option>2005 Nissan Frontier LE 4x4</option>
+                            <option>2011 Nissan Altima</option>                                        
+                        </select>
+                    </div>          
+                 </div>                     
+            </div>                                           
+            <div class="row">
+                <div class="col">
+                    <div class="md-form animated fadeIn">
+                        <select name="vVariant" id="variant" class="form-control" required>
+                            <option disabled selected>Specific Variant</option>
+                            <option>1</option>
+                            <option>2</option>
+                        </select>
+                    </div>          
+                 </div>
+                <div class="col">
+                    <div class="md-form animated fadeIn">
+                        <select name="vColor" id="color" class="form-control" required>
+                            <option disabled selected>Color</option>
+                            <option>Black</option>
+                            <option>Matte Black</option>
+                            <option>Blue</option>
+                            <option>Gray</option>
+                            <option>Orange</option>
+                        </select>
+                    </div>          
+                 </div>                     
+            </div>                  
+            <div class="row">
+                <div class="col">
+                    <div class="md-form animated fadeIn">
+                        <select name="yearModel" id="yearModel" class="form-control" required>
+                            <option disabled selected>Year Model</option>
+                            <option>2018</option>
+                            <option>2017</option>
+                            <option>2016</option>
+                            <option>2015</option>
+                            <option>2014</option>
+                            <option>2013</option>
+                            <option>2012</option>
+                            <option>2011</option>
+                            <option>2010</option>
+                            <option>2009</option>
+                            <option>2008</option>
+                            <option>2007</option>
+                            <option>2006</option>
+                            <option>2005</option>
+                            <option>2004</option>
+                            <option>2003</option>
+                            <option>2002</option>
+                            <option>2001</option>
+                            <option>2000</option>
+                        </select>
+                    </div>          
+                 </div>
+                <div class="col">
+                    <div class="md-form animated fadeIn">
+                        <input type="date" id="inceptionDate" name="inceptionDate" value="" class="form-control" required="">
+                        <label for="inceptionDate">Inception Date</label>
+                    </div>          
+                </div>                     
+            </div>  
+
+            <div class="text-center mt-4 animated fadeIn lightSpeedIn">
+                <button class="btn btn-primary" type="submit">Submit</button>
+            </div>            
+
+        </form>
+        <!-- Material form register -->
+    </div>                      
+
+<%- include footer %>    

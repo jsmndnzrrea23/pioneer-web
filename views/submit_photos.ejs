@@ -1,0 +1,106 @@
+<%- include header %>
+
+    <div class="container">
+
+
+
+        <form role="form" method="post" action="/submit_photos" encType="multipart/form-data">
+            <!-- <h3 class="animated fadeIn mb-4 text-center">Submit Photos</h3> -->
+
+<!--             <% if (message.length > 0) { %>
+                <div class="alert alert-success col-sm-12"><%= message %></div>
+            <% } %> -->
+            <% if (status.length > 0) { %>                                                                                
+                <input type="hidden" id="status" name="status" value="<%= status %>">
+            <% } %>
+                <input type="hidden" id="mid" name="mid" value="">
+
+            <div class="md-form animated fadeIn">
+                <i class="fa fa-clipboard prefix grey-text"></i>
+                <input type="text" id="claimType" name="claimType" value="" class="form-control" required="" readonly="">
+                <label for="claimType">Product</label>
+            </div>               
+
+            <div class="md-form animated fadeIn" id="subClaimType">
+                <select name="subCType" id="subCType" class="form-control">
+                    <option disabled selected>Sub Claim Type</option>
+                    <option value="MT">Medical Treatment</option>
+                    <option value="HI">Hospital Income</option>
+                    <option value="CVCMC">Compassionate Visit & Care of Minor Children</option>
+                    <option value="ETCT">Emergency Trip Cancellation & Termination</option>
+                    <option value="FDMCF">Flight Delay & Missed Connecting Flight</option>
+                    <option value="HJ">Hijack</option>
+                    <option value="BDDB">Baggage Delay or Damage to Baggage</option>
+                    <option value="LB">Loss of Baggage</option>
+                    <option value="LPM">Loss of Personal Money</option>
+                    <option value="LTD">Loss of Travel Documents</option>
+                    <option value="PL">Personal Liability</option>
+                    <option value="PA">Personal Accident</option>
+                    <option value="ED">Emergency Dentistry</option>
+                    <option value="SR">Staff Replacement</option>
+                    <option value="LDGE">Loss or Damage to Golf Equipment</option>
+                    <option value="LHCPG">Loss of Hand Carried Personal Gadget</option>                                         
+                </select>
+            </div>            
+
+            <div class="md-form animated fadeIn">
+                <i class="fa fa-exclamation-triangle prefix grey-text"></i>
+                <input type="number" id="policy" name="policy" class="form-control" required="">
+                <label for="policy">Policy number</label>
+            </div>             
+
+            <div class="md-form animated fadeIn">
+                <i class="fa fa-user prefix grey-text"></i>
+                <input type="text" id="fname" name="fname" value="" class="form-control" required="">
+                <label for="fname">Your first name</label>
+            </div>
+            
+            <div class="md-form animated fadeIn">
+                <i class="fa fa-user prefix grey-text" style="visibility: hidden"></i>
+                <input type="text" id="mname" name="mname" value="" class="form-control" required="">
+                <label for="mname">Your middle name</label>
+            </div>
+
+            <div class="md-form animated fadeIn">
+                <i class="fa fa-user prefix grey-text" style="visibility: hidden"></i>
+                <input type="text" id="lname" name="lname" value="" class="form-control" required="">
+                <label for="lname">Your last name</label>
+            </div>
+
+            <div class="md-form animated fadeIn">
+                <i class="fa fa-address-card prefix grey-text"></i>
+                <input type="number" id="contact" name="contact" class="form-control" required="">
+                <label for="contact">Your mobile number</label>
+            </div>
+
+            <div class="md-form animated fadeIn" id="emailAdd">
+                <i class="fa fa-address-card prefix grey-text" style="visibility: hidden"></i>
+                <input type="email" id="email" name="email" class="form-control" required="">
+                <label for="email">Your email address</label>
+            </div>
+
+            <div class="md-form animated fadeIn">
+                <i class="fa fa-birthday-cake prefix grey-text"></i>
+                <input name="bday" placeholder="Your birthday" type="text" id="bday" class="form-control clearable">
+            </div>            
+
+            <div class="md-form animated fadeIn">
+                <i class="fa fa-address-card prefix grey-text"></i>
+                <textarea type="text" id="address" name="address" class="form-control md-textarea" rows="2"></textarea>   
+                <label for="address" class="animated zoomIn">Address</label>
+            </div><br>            
+
+<!--             <div class="text-center upload-label animated fadeInLeftBig">*upload scanned document copies here*</div>
+            <div class="md-form animated fadeIn bounce">
+                <i class="fa fa-paperclip prefix grey-text"></i>
+                <input type="file" name="imgFiles" class="form-control" required="">
+            </div> -->
+
+            <div class="text-center mt-4 animated fadeIn lightSpeedIn">
+                <button class="btn btn-primary" type="submit">Submit</button>
+            </div>
+        </form>
+        <!-- Material form register -->
+    </div>                      
+
+<%- include footer %>    

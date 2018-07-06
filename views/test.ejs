@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>loc</title>
+    <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>    
+</head>
+<body>
+<form>
+    <select name="province" id="provinceSel" size="1">
+        <option value="" selected="selected">Select province</option>
+    </select>
+    <br>
+    <br>
+    <select name="city" id="citySel" size="1">
+        <option value="" selected="selected">Please select province first</option>
+    </select>
+    <br>
+    <br>
+    <select name="zip" id="zipSel" size="1">
+        <option value="" selected="selected">Please select city first</option>
+    </select>
+</form>
+<script>
+var provinceObject = {
+
+    "ABRA":{"BANGUED":["2800", "OTHERS"],"BOLINEY": ["2815", "OTHERS"]},
+    "AGUSAN DEL NORTE":{"BUENAVISTA": ["8601", "OTHERS"],"BUTUAN CITY": ["8600", "OTHERS"]}
+    
+}
+window.onload = function () {
+    var provinceSel = document.getElementById("provinceSel"),
+        citySel = document.getElementById("citySel"),
+        zipSel = document.getElementById("zipSel");
+    for (var state in provinceObject) {
+        provinceSel.options[provinceSel.options.length] = new Option(state, state);
+    }
+    provinceSel.onchange = function () {
+        citySel.length = 1; // remove all options bar first
+        zipSel.length = 1; // remove all options bar first
+        if (this.selectedIndex < 1) return; // done   
+        for (var county in provinceObject[this.value]) {
+            citySel.options[citySel.options.length] = new Option(county, county);
+        }
+    }
+    provinceSel.onchange(); // reset in case page is reloaded
+    citySel.onchange = function () {
+        zipSel.length = 1; // remove all options bar first
+        if (this.selectedIndex < 1) return; // done   
+        var cities = provinceObject[provinceSel.value][this.value];
+        for (var i = 0; i < cities.length; i++) {
+            zipSel.options[zipSel.options.length] = new Option(cities[i], cities[i]);
+        }
+    }
+}    
+</script>
+</body>
+</html>

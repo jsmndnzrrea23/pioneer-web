@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Safetrip Requirements</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap.min.css"/>    
+        
+    <!-- Material Design Bootstrap -->
+    <link href="css/mdb.min.css" rel="stylesheet">
+    <!-- Your custom styles (optional) -->
+    <link href="css/style.css" rel="stylesheet">
+
+    <!-- JQuery -->
+    <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>    
+
+    <script>
+        //GET
+        var urlParams = new URLSearchParams(window.location.search);
+        var mid = urlParams.get('mid');
+
+        $(document).ready(function(){
+            $("#mid").val(mid);
+            var sctype = $("#safetripType option:selected").text();
+            var status = $("#status").attr('value');
+            console.log(mid);
+            console.log(sctype);
+            console.log(status);
+
+            if(status == 'success'){
+
+                //FB SDK
+                (function(d, s, id){
+                  var js, fjs = d.getElementsByTagName(s)[0];
+                  if (d.getElementById(id)) {return;}
+                  js = d.createElement(s); js.id = id;
+                  js.src = "//connect.facebook.com/en_US/messenger.Extensions.js";
+                  fjs.parentNode.insertBefore(js, fjs);
+                }(document, 'script', 'Messenger'));                        
+
+                window.extAsyncInit = function () {
+                  //window.top.close();
+                  MessengerExtensions.requestCloseBrowser(function success() {
+                    console.log('close success');
+                  }, function error(err) {
+                    //alert(err);
+                  });    
+
+                };
+
+            }
+            
+        });
+
+    </script>
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <form role="form" method="post" action="/safetrip_req" encType="multipart/form-data">
+
+            <% if (message.length > 0) { %>
+                <input type="text" id="status" value="<%= message %>">
+            <% } %>
+
+            <input type="hidden" id="mid" name="mid" value="">
+
+            <div class="md-form animated fadeIn">
+                <select name="safetripType" id="safetripType" class="form-control">
+                    <option disabled selected>Safetrip Claim Type</option>
+                    <option value="MT">Medical Treatment</option>
+                    <option value="HI">Hospital Income</option>
+                    <option value="CVCMC">Compassionate Visit & Care of Minor Children</option>
+                    <option value="ETCT">Emergency Trip Cancellation & Termination</option>
+                    <option value="FDMCF">Flight Delay & Missed Connecting Flight</option>
+                    <option value="HJ">Hijack</option>
+                    <option value="BDDB">Baggage Delay or Damage to Baggage</option>
+                    <option value="LB">Loss of Baggage</option>
+                    <option value="LPM">Loss of Personal Money</option>
+                    <option value="LTD">Loss of Travel Documents</option>
+                    <option value="PL">Personal Liability</option>
+                    <option value="PA">Personal Accident</option>
+                    <option value="ED">Emergency Dentistry</option>
+                    <option value="SR">Staff Replacement</option>
+                    <option value="LDGE">Loss or Damage to Golf Equipment</option>
+                    <option value="LHCPG">Loss of Hand Carried Personal Gadget</option>                                         
+                </select>
+            </div>            
+
+            <div class="text-center mt-4 animated fadeIn lightSpeedIn">
+                <button class="btn btn-warning" type="submit">Submit</button>
+            </div>
+        </form>
+    </div>                      
+
+    <!-- SCRIPTS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.3/js/tether.js"></script>
+
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="js/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="js/mdb.min.js"></script>
+
+</body>
+
+</html>

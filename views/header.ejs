@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title><%= title %></title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap.min.css"/>    
+        
+    <!-- Material Design Bootstrap -->
+    <link href="css/mdb.min.css" rel="stylesheet">
+    <!-- Your custom styles (optional) -->
+    <link href="css/style.css" rel="stylesheet">
+
+    <!-- JQuery -->
+    <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>    
+
+    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"></script>
+
+    <link href="css/datepicker.min.css" rel="stylesheet" type="text/css">
+    <script src="js/datepicker.min.js"></script>
+
+    <!-- Include English language -->
+    <script src="js/datepicker.en.js"></script>
+
+    <script>
+        //GET
+        var urlParams = new URLSearchParams(window.location.search);
+        var mid = urlParams.get('mid');
+        var fname = urlParams.get('fname');
+        var lname = urlParams.get('lname');
+        var title = urlParams.get('title');
+        var tag = urlParams.get('tag');
+
+        $(document).ready(function(){
+            $("#mid").val(mid);
+            $("#fname").val(fname);
+            $("#lname").val(lname);
+            $("#claimType").val(tag);
+            
+            document.title = title;
+
+            var divSubClaim = document.getElementById("subClaimType");
+            if(tag !== 'safetrip'){
+                divSubClaim.style.display = "none";
+            }
+
+            //for email submit
+            var div = document.getElementById("emailAdd");            
+            if(title !== 'Additional Requirements' && title !== 'Claim' && title !== 'Follow-up Concern' && title !== 'Promo Registration'){
+              div.style.display = "none";
+            }
+
+            //for close browser
+            var status = document.getElementById("status");
+            if (status && status.value == "updateDone") {
+                            
+                swal({
+                  title: 'Yay!',
+                  text: 'Please send your scanned documents after this!',
+                  type: 'success',
+                  confirmButtonText: 'Got it!'
+                }).then(function(){
+
+                    //FB SDK
+                    (function(d, s, id){
+                         var js, fjs = d.getElementsByTagName(s)[0];
+                         if (d.getElementById(id)) {return;}
+                         js = d.createElement(s); js.id = id;
+                         js.src = "//connect.facebook.com/en_US/messenger.Extensions.js";
+                         fjs.parentNode.insertBefore(js, fjs);
+                    }(document, 'script', 'Messenger'));                        
+
+                    window.extAsyncInit = function () {
+                                   //window.top.close();
+                        MessengerExtensions.requestCloseBrowser(function success() {
+                         console.log('close success');
+                        }, function error(err) {
+                                       //alert(err);
+                        });    
+
+                    };
+
+                });        
+
+            } 
+            if (status && status.value == "insertDone") {
+                            
+                swal({
+                  title: 'Yay!',
+                  text: 'Thank you for you inquiry! Please wait acknowledge your inquiry!',
+                  type: 'success',
+                  confirmButtonText: 'Got it!'
+                }).then(function(){
+
+                    //FB SDK
+                    (function(d, s, id){
+                         var js, fjs = d.getElementsByTagName(s)[0];
+                         if (d.getElementById(id)) {return;}
+                         js = d.createElement(s); js.id = id;
+                         js.src = "//connect.facebook.com/en_US/messenger.Extensions.js";
+                         fjs.parentNode.insertBefore(js, fjs);
+                    }(document, 'script', 'Messenger'));                        
+
+                    window.extAsyncInit = function () {
+                                   //window.top.close();
+                        MessengerExtensions.requestCloseBrowser(function success() {
+                         console.log('close success');
+                        }, function error(err) {
+                                       //alert(err);
+                        });    
+
+                    };
+
+                });        
+
+            }
+            if (status && status.value == "insertPromo") {            
+
+                swal({
+                  title: 'Yay!',
+                  text: 'Thank you! Your promo registration has been submitted!',
+                  type: 'success',
+                  confirmButtonText: 'Got it!'
+                }).then(function(){
+
+                    //FB SDK
+                    (function(d, s, id){
+                         var js, fjs = d.getElementsByTagName(s)[0];
+                         if (d.getElementById(id)) {return;}
+                         js = d.createElement(s); js.id = id;
+                         js.src = "//connect.facebook.com/en_US/messenger.Extensions.js";
+                         fjs.parentNode.insertBefore(js, fjs);
+                    }(document, 'script', 'Messenger'));                        
+
+                    window.extAsyncInit = function () {
+                                   //window.top.close();
+                        MessengerExtensions.requestCloseBrowser(function success() {
+                         console.log('close success');
+                        }, function error(err) {
+                                       //alert(err);
+                        });    
+
+                    };
+
+                });        
+
+            }
+
+        });
+
+    </script>
+
+</head>
+
+<body>
